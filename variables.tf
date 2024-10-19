@@ -44,6 +44,7 @@ variable "site_type" {
 }
 
 variable "site_location" {
+  description = "The location of the site, used for timezone and geolocation.  Use the Cato CLI to get the list of locations. "
   type = object({
     city         = string
     country_code = string
@@ -54,7 +55,7 @@ variable "site_location" {
 
 ## Virtual Socket Variables
 variable "vpc_id" {
-  description = ""
+  description = "VPC ID"
   type        = string
 }
 

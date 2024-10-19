@@ -30,6 +30,18 @@ module "vsocket-aws" {
 }
 ```
 
+## Site Location Reference
+
+For more information on site_location syntax, use the [Cato CLI](https://github.com/catonetworks/cato-cli) to lookup values.
+
+```bash
+$ pip3 install catocli
+$ export CATO_TOKEN="your-api-token-here"
+$ export CATO_ACCOUNT_ID="your-account-id"
+$ catocli query siteLocation -h
+$ catocli query siteLocation '{"filters":[{"search": "San Diego","field":"city","operation":"exact"}]}' -p
+```
+
 ## Authors
 
 Module is maintained by [Cato Networks](https://github.com/catonetworks) with help from [these awesome contributors](https://github.com/catonetworks/terraform-cato-vsocket-aws/graphs/contributors).
