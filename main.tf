@@ -2,7 +2,7 @@ provider "aws" {
   region = var.region
 }
 
-provider "cato-oss" {
+provider "cato" {
   baseurl    = var.baseurl
   token      = var.token
   account_id = var.account_id
@@ -42,7 +42,7 @@ resource "aws_instance" "vSocket" {
   availability_zone = data.aws_availability_zones.available.names[0]
   key_name          = var.key_pair
   instance_type     = var.instance_type
-  user_data         = base64encode(data.cato-oss_accountSnapshotSite.aws-site.info.sockets[0].serial)
+  user_data         = base64encode(data.cato_accountSnapshotSite.aws-site.info.sockets[0].serial)
   # Network Interfaces
   # MGMTENI
   network_interface {
