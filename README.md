@@ -10,7 +10,6 @@ module "vsocket-aws" {
   token = "xxxxxxx"
   account_id = "xxxxxxx"
   vpc_id               = "vpc-abcde12345abcde"
-  instance_type        = "c5.xlarge"
   key_pair             = "your-keypair-name-here"
   native_network_range = "10.0.0.0/16"
   region               = "us-east-2"
@@ -20,7 +19,6 @@ module "vsocket-aws" {
   lan_local_ip         = "10.0.3.5"
   site_name            = "AWS Site us-east-2"
   site_description     = "AWS Site us-east-2"
-  site_type            = "CLOUD_DC"
   site_location = {
     city         = "New York City"
     country_code = "US"

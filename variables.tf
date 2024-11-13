@@ -23,7 +23,7 @@ variable "site_description" {
 
 variable "site_name" {
   type        = string
-  description = "Your Cato Site Deployment Name Here"
+  description = "Your Cato Site Name Here"
 }
 
 variable "native_network_range" {
@@ -41,10 +41,11 @@ variable "site_type" {
     condition     = contains(["DATACENTER", "BRANCH", "CLOUD_DC", "HEADQUARTERS"], var.site_type)
     error_message = "The site_type variable must be one of 'DATACENTER','BRANCH','CLOUD_DC','HEADQUARTERS'."
   }
+  default = "CLOUD_DC"
 }
 
 variable "site_location" {
-  description = "The location of the site, used for timezone and geolocation.  Use the Cato CLI to get the list of locations. "
+  description = "The location of the site, used for timezone and geolocation.  Use the Cato CLI to get the list of locations. []()"
   type = object({
     city         = string
     country_code = string
