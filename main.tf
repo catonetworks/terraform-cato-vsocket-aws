@@ -28,7 +28,7 @@ data "cato_accountSnapshotSite" "aws-site" {
 data "aws_ami" "vSocket" {
   most_recent = true
   name_regex  = "VSOCKET_AWS"
-  owners      = ["679593333241"]
+  owners      = ["aws-marketplace"]
 }
 
 data "aws_availability_zones" "available" {
