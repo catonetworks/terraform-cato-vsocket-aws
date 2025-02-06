@@ -118,3 +118,9 @@ variable "lan_local_ip" {
   description = "Choose an IP Address within the LAN Subnet. You CANNOT use the first four assignable IP addresses within the subnet as it's reserved for the AWS virtual router interface used as the default route for private resources to gain access to WAN and internet. The accepted input format is X.X.X.X"
   type        = string
 }
+
+variable "tags" {
+  description = "Tags to be appended to AWS resources"
+  type        = map(string)
+  default = {}
+}

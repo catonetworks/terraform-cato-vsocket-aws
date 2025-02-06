@@ -25,6 +25,10 @@ module "vsocket-aws" {
     state_code   = "US-NY" ## Optional - for countries with states"
     timezone     = "America/New_York"
   }
+  tags = {
+    Environment = "Production"
+    Owner = "Operations Team"
+  }
 }
 ```
 

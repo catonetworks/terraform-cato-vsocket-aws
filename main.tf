@@ -64,7 +64,7 @@ resource "aws_instance" "vSocket" {
     volume_size = var.ebs_disk_size
     volume_type = var.ebs_disk_type
   }
-  tags = {
+  tags = merge(var.tags,{
     Name = "${var.site_name}-vSocket"
-  }
+  })
 }
