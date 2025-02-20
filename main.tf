@@ -39,7 +39,6 @@ data "aws_availability_zones" "available" {
 resource "aws_instance" "vSocket" {
   tenancy           = "default"
   ami               = data.aws_ami.vSocket.id
-  availability_zone = data.aws_availability_zones.available.names[0]
   key_name          = var.key_pair
   instance_type     = var.instance_type
   user_data         = base64encode(data.cato_accountSnapshotSite.aws-site.info.sockets[0].serial)
