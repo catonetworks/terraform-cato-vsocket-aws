@@ -37,11 +37,11 @@ data "aws_availability_zones" "available" {
 
 ## vSocket Instance
 resource "aws_instance" "vSocket" {
-  tenancy           = "default"
-  ami               = data.aws_ami.vSocket.id
-  key_name          = var.key_pair
-  instance_type     = var.instance_type
-  user_data         = base64encode(data.cato_accountSnapshotSite.aws-site.info.sockets[0].serial)
+  tenancy       = "default"
+  ami           = data.aws_ami.vSocket.id
+  key_name      = var.key_pair
+  instance_type = var.instance_type
+  user_data     = base64encode(data.cato_accountSnapshotSite.aws-site.info.sockets[0].serial)
   # Network Interfaces
   # MGMTENI
   network_interface {
@@ -63,7 +63,7 @@ resource "aws_instance" "vSocket" {
     volume_size = var.ebs_disk_size
     volume_type = var.ebs_disk_type
   }
-  tags = merge(var.tags,{
+  tags = merge(var.tags, {
     Name = "${var.site_name}-vSocket"
   })
 }

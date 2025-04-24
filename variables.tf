@@ -100,17 +100,17 @@ variable "region" {
 }
 
 variable "mgmt_eni_id" {
-  description = "Managent Elastic Network Interface ID, network interface connected public to a subnet with routable access to the internet to access the internet and the Cato SASE cloud platform. Example: eni-abcde12345abcde12345"  
+  description = "Managent Elastic Network Interface ID, network interface connected public to a subnet with routable access to the internet to access the internet and the Cato SASE cloud platform. Example: eni-abcde12345abcde12345"
   type        = string
 }
 
 variable "wan_eni_id" {
-  description = "WAN Elastic Network Interface ID, network interface connected to a public subnet with routable access to the internet to access the internet and the Cato SASE cloud platform. Example: eni-abcde12345abcde12345"  
+  description = "WAN Elastic Network Interface ID, network interface connected to a public subnet with routable access to the internet to access the internet and the Cato SASE cloud platform. Example: eni-abcde12345abcde12345"
   type        = string
 }
 
 variable "lan_eni_id" {
-  description = "LAN Elastic Network Interface ID, network interface connected to a private subnet for local VPC resources to connect to for access to internet and WAN access through the Cato socket. Example: eni-abcde12345abcde12345"  
+  description = "LAN Elastic Network Interface ID, network interface connected to a private subnet for local VPC resources to connect to for access to internet and WAN access through the Cato socket. Example: eni-abcde12345abcde12345"
   type        = string
 }
 
@@ -122,5 +122,5 @@ variable "lan_local_ip" {
 variable "tags" {
   description = "Tags to be appended to AWS resources"
   type        = map(string)
-  default = {}
+  default     = {}
 }
