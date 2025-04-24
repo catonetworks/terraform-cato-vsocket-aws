@@ -17,3 +17,8 @@
 - updated readme with siteLocation examples and auto-generated parameters
 - extracted provider from module to be passed in
 - updated addtional outputs
+
+## 0.0.12 (2025-04-24)
+
+### Features
+- Purged legacy variables for cato_token and account_id from removing provider from module
