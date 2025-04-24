@@ -10,3 +10,10 @@
 
 ### Features
 - updated readme and added outputs for id and serial for site
+
+## 0.0.8 (2025-04-24)
+
+### Features
+- updated readme with siteLocation examples and auto-generated parameters
+- extracted provider from module to be passed in
+- updated addtional outputs
