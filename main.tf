@@ -1,13 +1,3 @@
-provider "aws" {
-  region = var.region
-}
-
-provider "cato" {
-  baseurl    = var.baseurl
-  token      = var.token
-  account_id = var.account_id
-}
-
 resource "cato_socket_site" "aws-site" {
   connection_type = var.connection_type
   description     = var.site_description

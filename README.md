@@ -5,6 +5,26 @@ Terraform module which creates an AWS Socket Site in the Cato Management Applica
 ## Usage
 
 ```hcl
+// Data Source for siteLocation
+data "cato_siteLocation" "ny" {
+  filters = [{
+    field = "city"
+    search = "New York"
+    operation = "startsWith"
+  },
+  {
+    field = "state_name"
+    search = "New York"
+    operation = "exact"
+  },
+ {
+    field = "country_name"
+    search = "United"
+    operation = "contains"
+  }]
+}
+
+// Virtual Socket Resource
 module "vsocket-aws" {
   source = "catonetworks/vsocket-aws/cato"
   token = "xxxxxxx"
@@ -20,10 +40,9 @@ module "vsocket-aws" {
   site_name            = "AWS Site us-east-2"
   site_description     = "AWS Site us-east-2"
   site_location = {
-    city         = "New York City"
-    country_code = "US"
-    state_code   = "US-NY" ## Optional - for countries with states"
-    timezone     = "America/New_York"
+    country_code = data.cato_siteLocation.ny.locations[1].country_code
+    state_code = data.cato_siteLocation.ny.locations[1].state_code
+    timezone = data.cato_siteLocation.ny.locations[1].timezone[0]
   }
   tags = {
     Environment = "Production"
@@ -64,8 +83,8 @@ Apache 2 Licensed. See [LICENSE](https://github.com/catonetworks/terraform-cato-
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
-| <a name="provider_cato"></a> [cato](#provider\_cato) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.72.1 |
+| <a name="provider_cato"></a> [cato](#provider\_cato) | 0.0.4 |
 
 ## Modules
 
