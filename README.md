@@ -5,6 +5,17 @@ Terraform module which creates an AWS Socket Site in the Cato Management Applica
 ## Usage
 
 ```hcl
+// Initialize Providers
+provider "aws" {
+  region = var.region
+}
+
+provider "cato" {
+  baseurl    = var.baseurl
+  token      = var.cato_token
+  account_id = var.account_id
+}
+
 // Data Source for siteLocation
 data "cato_siteLocation" "ny" {
   filters = [{
