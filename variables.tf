@@ -5,16 +5,6 @@ variable "baseurl" {
   default     = "https://api.catonetworks.com/api/v1/graphql2"
 }
 
-variable "token" {
-  description = "Cato API token"
-  type        = string
-}
-
-variable "account_id" {
-  description = "Cato account ID"
-  type        = number
-}
-
 ## vSocket Module Varibables
 variable "site_description" {
   type        = string
