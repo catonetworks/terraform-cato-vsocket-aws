@@ -110,14 +110,12 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_cato_site_id"></a> [cato\_site\_id](#output\_cato\_site\_id) | n/a |
-| <a name="output_cato_site_name"></a> [cato\_site\_name](#output\_cato\_site\_name) | n/a |
-| <a name="output_local_ip"></a> [local\_ip](#output\_local\_ip) | n/a |
-| <a name="output_native_network_range"></a> [native\_network\_range](#output\_native\_network\_range) | n/a |
-| <a name="output_socket_site_id"></a> [socket\_site\_id](#output\_socket\_site\_id) | The following attributes are exported: The following attributes are exported: |
-| <a name="output_socket_site_serial"></a> [socket\_site\_serial](#output\_socket\_site\_serial) | n/a |
-| <a name="output_translated_subnet"></a> [translated\_subnet](#output\_translated\_subnet) | n/a |
-| <a name="output_vsocket_instance_ami"></a> [vsocket\_instance\_ami](#output\_vsocket\_instance\_ami) | n/a |
-| <a name="output_vsocket_instance_id"></a> [vsocket\_instance\_id](#output\_vsocket\_instance\_id) | n/a |
-| <a name="output_vsocket_instance_public_ip"></a> [vsocket\_instance\_public\_ip](#output\_vsocket\_instance\_public\_ip) | n/a |
+| <a name="output_cato_site_name"></a> [cato\_site\_name](#output\_cato\_site\_name) | The Site Name of the Cato Networks Site (CMA) |
+| <a name="output_local_ip"></a> [local\_ip](#output\_local\_ip) | The local IP of the Cato vSocket |
+| <a name="output_native_network_range"></a> [native\_network\_range](#output\_native\_network\_range) | The Native Network Range of the Cato Networks Site (CMA) |
+| <a name="output_socket_site_id"></a> [socket\_site\_id](#output\_socket\_site\_id) | The Site ID of the Cato Networks Site (CMA) |
+| <a name="output_socket_site_serial"></a> [socket\_site\_serial](#output\_socket\_site\_serial) | The Serial of the Cato Networks Socket |
+| <a name="output_vsocket_instance_ami"></a> [vsocket\_instance\_ami](#output\_vsocket\_instance\_ami) | The AMI used to build the vSocket |
+| <a name="output_vsocket_instance_id"></a> [vsocket\_instance\_id](#output\_vsocket\_instance\_id) | The AWS Instance ID of the vSocket |
+| <a name="output_vsocket_instance_public_ip"></a> [vsocket\_instance\_public\_ip](#output\_vsocket\_instance\_public\_ip) | The Public IP of the vSocket |
 <!-- END_TF_DOCS -->
