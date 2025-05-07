@@ -7,13 +7,13 @@ Terraform module which creates an AWS Socket Site in the Cato Management Applica
 ```hcl
 // Initialize Providers
 provider "aws" {
-  region = var.region
+  region = "us-east-1"
 }
 
 provider "cato" {
   baseurl    = var.baseurl
-  token      = var.cato_token
-  account_id = var.account_id
+  token      = "xxxxxxxxxxxx"
+  account_id = "xxxxxxxxxxxx"
 }
 
 // Data Source for siteLocation
@@ -41,7 +41,6 @@ module "vsocket-aws" {
   vpc_id               = "vpc-abcde12345abcde"
   key_pair             = "your-keypair-name-here"
   native_network_range = "10.0.0.0/16"
-  region               = "us-east-2"
   mgmt_eni_id          = "eni-abcde12345abcde12mgmt"
   wan_eni_id           = "eni-abcde12345abcde123wan"
   lan_eni_id           = "eni-abcde12345abcde123lan"
@@ -92,8 +91,8 @@ Apache 2 Licensed. See [LICENSE](https://github.com/catonetworks/terraform-cato-
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.72.1 |
-| <a name="provider_cato"></a> [cato](#provider\_cato) | 0.0.4 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+| <a name="provider_cato"></a> [cato](#provider\_cato) | n/a |
 
 ## Modules
 
@@ -104,16 +103,15 @@ No modules.
 | Name | Type |
 |------|------|
 | [aws_instance.vSocket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | resource |
-| cato_socket_site.aws-site | resource |
+| [cato_socket_site.aws-site](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/resources/socket_site) | resource |
 | [aws_ami.vSocket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
 | [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
-| cato_accountSnapshotSite.aws-site | data source |
+| [cato_accountSnapshotSite.aws-site](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/data-sources/accountSnapshotSite) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_baseurl"></a> [baseurl](#input\_baseurl) | Cato API base URL | `string` | `"https://api.catonetworks.com/api/v1/graphql2"` | no |
 | <a name="input_connection_type"></a> [connection\_type](#input\_connection\_type) | Model of Cato vsocket | `string` | `"SOCKET_AWS1500"` | no |
 | <a name="input_ebs_disk_size"></a> [ebs\_disk\_size](#input\_ebs\_disk\_size) | Size of disk | `number` | `32` | no |
 | <a name="input_ebs_disk_type"></a> [ebs\_disk\_type](#input\_ebs\_disk\_type) | Size of disk | `string` | `"gp2"` | no |
@@ -123,7 +121,6 @@ No modules.
 | <a name="input_lan_local_ip"></a> [lan\_local\_ip](#input\_lan\_local\_ip) | Choose an IP Address within the LAN Subnet. You CANNOT use the first four assignable IP addresses within the subnet as it's reserved for the AWS virtual router interface used as the default route for private resources to gain access to WAN and internet. The accepted input format is X.X.X.X | `string` | n/a | yes |
 | <a name="input_mgmt_eni_id"></a> [mgmt\_eni\_id](#input\_mgmt\_eni\_id) | Managent Elastic Network Interface ID, network interface connected public to a subnet with routable access to the internet to access the internet and the Cato SASE cloud platform. Example: eni-abcde12345abcde12345 | `string` | n/a | yes |
 | <a name="input_native_network_range"></a> [native\_network\_range](#input\_native\_network\_range) | Choose the unique network range your vpc is configured with for your socket that does not conflict with the rest of your Wide Area Network.<br/>    The accepted input format is Standard CIDR Notation, e.g. X.X.X.X/X | `string` | n/a | yes |
-| <a name="input_region"></a> [region](#input\_region) | AWS region | `string` | n/a | yes |
 | <a name="input_site_description"></a> [site\_description](#input\_site\_description) | Site description | `string` | n/a | yes |
 | <a name="input_site_location"></a> [site\_location](#input\_site\_location) | The location of the site, used for timezone and geolocation.  Use the Cato CLI to get the list of locations. []() | <pre>object({<br/>    city         = string<br/>    country_code = string<br/>    state_code   = string<br/>    timezone     = string<br/>  })</pre> | n/a | yes |
 | <a name="input_site_name"></a> [site\_name](#input\_site\_name) | Your Cato Site Name Here | `string` | n/a | yes |
