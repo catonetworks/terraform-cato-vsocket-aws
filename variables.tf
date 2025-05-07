@@ -1,10 +1,3 @@
-## Cato provider variables
-variable "baseurl" {
-  description = "Cato API base URL"
-  type        = string
-  default     = "https://api.catonetworks.com/api/v1/graphql2"
-}
-
 ## vSocket Module Varibables
 variable "site_description" {
   type        = string
@@ -82,11 +75,6 @@ variable "key_pair" {
   description = "Name of an existing Key Pair for AWS encryption"
   type        = string
   default     = "your-key-pair-name-here"
-}
-
-variable "region" {
-  description = "AWS region"
-  type        = string
 }
 
 variable "mgmt_eni_id" {

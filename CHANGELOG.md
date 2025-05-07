@@ -22,3 +22,8 @@
 
 ### Features
 - Purged legacy variables for cato_token and account_id from removing provider from module
+
+## 0.0.13 (2025-04-24)
+
+### Features
+- Purged legacy variables for region and baseurl of provider params from module
