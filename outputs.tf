@@ -38,3 +38,8 @@ output "local_ip" {
   value       = cato_socket_site.aws-site.native_range.local_ip
   description = "The local IP of the Cato vSocket"
 }
+
+output "cato_license" { 
+  description = "Cato site license info"
+  value = var.license_id==null ? null : cato_license.license 
+}

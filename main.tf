@@ -57,3 +57,11 @@ resource "aws_instance" "vSocket" {
     Name = "${var.site_name}-vSocket"
   })
 }
+
+resource "cato_license" "license" {
+  depends_on = [ aws_instance.vSocket ]
+  count = var.license_id == null ? 0 : 1
+  site_id = cato_socket_site.aws-site.id
+  license_id = var.license_id
+  bw = var.license_bw == null ? null : var.license_bw
+}

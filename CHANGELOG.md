@@ -28,3 +28,9 @@
 ### Features
 - Purged legacy variables for region and baseurl of provider params from module
 - Regenerated documentation in readme updating variables 
+
+## 0.0.15 (2024-05-07)
+
+### Features
+- Added optional license resource and inputs used for commercial site deployments
+

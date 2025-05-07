@@ -2,6 +2,10 @@
 
 Terraform module which creates an AWS Socket Site in the Cato Management Application (CMA), and deploys a virtual socket ec2 instance in AWS.
 
+## NOTE
+- For help with finding exact sytax to match site location for city, state_name, country_name and timezone, please refer to the [cato_siteLocation data source](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/data-sources/siteLocation).
+- For help with finding a license id to assign, please refer to the [cato_licensingInfo data source](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/data-sources/licensingInfo).
+
 ## Usage
 
 ```hcl
@@ -14,25 +18,6 @@ provider "cato" {
   baseurl    = var.baseurl
   token      = "xxxxxxxxxxxx"
   account_id = "xxxxxxxxxxxx"
-}
-
-// Data Source for siteLocation
-data "cato_siteLocation" "ny" {
-  filters = [{
-    field = "city"
-    search = "New York"
-    operation = "startsWith"
-  },
-  {
-    field = "state_name"
-    search = "New York"
-    operation = "exact"
-  },
- {
-    field = "country_name"
-    search = "United"
-    operation = "contains"
-  }]
 }
 
 // Virtual Socket Resource
@@ -48,9 +33,10 @@ module "vsocket-aws" {
   site_name            = "AWS Site us-east-2"
   site_description     = "AWS Site us-east-2"
   site_location = {
-    country_code = data.cato_siteLocation.ny.locations[1].country_code
-    state_code = data.cato_siteLocation.ny.locations[1].state_code
-    timezone = data.cato_siteLocation.ny.locations[1].timezone[0]
+    city         = "New York City"
+    country_code = "US"
+    state_code   = "US-NY" ## Optional - for countries with states"
+    timezone     = "America/New_York"
   }
   tags = {
     Environment = "Production"
@@ -103,6 +89,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [aws_instance.vSocket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | resource |
+| [cato_license.license](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/resources/license) | resource |
 | [cato_socket_site.aws-site](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/resources/socket_site) | resource |
 | [aws_ami.vSocket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
 | [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
@@ -119,6 +106,8 @@ No modules.
 | <a name="input_key_pair"></a> [key\_pair](#input\_key\_pair) | Name of an existing Key Pair for AWS encryption | `string` | `"your-key-pair-name-here"` | no |
 | <a name="input_lan_eni_id"></a> [lan\_eni\_id](#input\_lan\_eni\_id) | LAN Elastic Network Interface ID, network interface connected to a private subnet for local VPC resources to connect to for access to internet and WAN access through the Cato socket. Example: eni-abcde12345abcde12345 | `string` | n/a | yes |
 | <a name="input_lan_local_ip"></a> [lan\_local\_ip](#input\_lan\_local\_ip) | Choose an IP Address within the LAN Subnet. You CANNOT use the first four assignable IP addresses within the subnet as it's reserved for the AWS virtual router interface used as the default route for private resources to gain access to WAN and internet. The accepted input format is X.X.X.X | `string` | n/a | yes |
+| <a name="input_license_bw"></a> [license\_bw](#input\_license\_bw) | The license bandwidth number for the cato site, specifying bandwidth ONLY applies for pooled licenses.  For a standard site license that is not pooled, leave this value null. Must be a number greater than 0 and an increment of 10. | `string` | `null` | no |
+| <a name="input_license_id"></a> [license\_id](#input\_license\_id) | The license ID for the Cato vSocket of license type CATO\_SITE, CATO\_SSE\_SITE, CATO\_PB, CATO\_PB\_SSE.  Example License ID value: 'abcde123-abcd-1234-abcd-abcde1234567'.  Note that licenses are not supported for trial accounts. | `string` | `null` | no |
 | <a name="input_mgmt_eni_id"></a> [mgmt\_eni\_id](#input\_mgmt\_eni\_id) | Managent Elastic Network Interface ID, network interface connected public to a subnet with routable access to the internet to access the internet and the Cato SASE cloud platform. Example: eni-abcde12345abcde12345 | `string` | n/a | yes |
 | <a name="input_native_network_range"></a> [native\_network\_range](#input\_native\_network\_range) | Choose the unique network range your vpc is configured with for your socket that does not conflict with the rest of your Wide Area Network.<br/>    The accepted input format is Standard CIDR Notation, e.g. X.X.X.X/X | `string` | n/a | yes |
 | <a name="input_site_description"></a> [site\_description](#input\_site\_description) | Site description | `string` | n/a | yes |
@@ -133,6 +122,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_cato_license"></a> [cato\_license](#output\_cato\_license) | Cato site license info |
 | <a name="output_cato_site_name"></a> [cato\_site\_name](#output\_cato\_site\_name) | The Site Name of the Cato Networks Site (CMA) |
 | <a name="output_local_ip"></a> [local\_ip](#output\_local\_ip) | The local IP of the Cato vSocket |
 | <a name="output_native_network_range"></a> [native\_network\_range](#output\_native\_network\_range) | The Native Network Range of the Cato Networks Site (CMA) |
