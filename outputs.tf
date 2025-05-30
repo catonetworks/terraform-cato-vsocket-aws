@@ -39,7 +39,7 @@ output "local_ip" {
   description = "The local IP of the Cato vSocket"
 }
 
-output "cato_license" { 
+output "cato_license" {
   description = "Cato site license info"
-  value = var.license_id==null ? null : cato_license.license 
+  value       = var.license_id == null ? null : cato_license.license
 }

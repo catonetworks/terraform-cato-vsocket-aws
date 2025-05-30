@@ -58,7 +58,7 @@ variable "ebs_disk_size" {
 variable "ebs_disk_type" {
   description = "Size of disk"
   type        = string
-  default     = "gp2"
+  default     = "gp3"
 }
 
 variable "instance_type" {

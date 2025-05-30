@@ -29,8 +29,12 @@
 - Purged legacy variables for region and baseurl of provider params from module
 - Regenerated documentation in readme updating variables 
 
-## 0.0.15 (2024-05-07)
+## 0.0.15 (2025-05-07)
 
 ### Features
 - Added optional license resource and inputs used for commercial site deployments
 
+## 0.0.16 (2025-05-30)
+
+### Features
+- Adjusted EBS Disk type from GP2 to GP3
