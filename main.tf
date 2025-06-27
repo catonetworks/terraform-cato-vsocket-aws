@@ -25,11 +25,11 @@ resource "cato_network_range" "routedNetworks" {
 
 ## vSocket Instance
 resource "aws_instance" "vSocket" {
-  tenancy       = "default"
-  ami           = data.aws_ami.vSocket.id
-  key_name      = var.key_pair
-  instance_type = var.instance_type
-  user_data_base64     = base64encode(data.cato_accountSnapshotSite.aws-site.info.sockets[0].serial)
+  tenancy          = "default"
+  ami              = data.aws_ami.vSocket.id
+  key_name         = var.key_pair
+  instance_type    = var.instance_type
+  user_data_base64 = base64encode(data.cato_accountSnapshotSite.aws-site.info.sockets[0].serial)
   # Network Interfaces
   # MGMTENI
   network_interface {
