@@ -38,3 +38,14 @@
 
 ### Features
 - Adjusted EBS Disk type from GP2 to GP3
+
+## 0.0.17 (2025-06-27)
+
+### Features
+- Added automatic site_location - site_location is inferred based on AWS Region 
+- Added Routed_Networks functionality - Routed Networks are created in Cato based on input to the module 
+- Cleaned up Variables and moved locals to the locals.tf file 
+- Moved data calls to data.tf file
+- Updated Readme File 
+- Updated Versions to latest cato provider, aws_provider 
+- Removed native_network for site configuration, inferred from lan_subnet via a for_each

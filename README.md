@@ -3,6 +3,7 @@
 Terraform module which creates an AWS Socket Site in the Cato Management Application (CMA), and deploys a virtual socket ec2 instance in AWS.
 
 ## NOTE
+- Site Location for Cato Socket is automatically inferred based on the region being deployed, however this can be overridden if necessary. 
 - For help with finding exact sytax to match site location for city, state_name, country_name and timezone, please refer to the [cato_siteLocation data source](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/data-sources/siteLocation).
 - For help with finding a license id to assign, please refer to the [cato_licensingInfo data source](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/data-sources/licensingInfo).
 
@@ -16,28 +17,44 @@ provider "aws" {
 
 provider "cato" {
   baseurl    = var.baseurl
-  token      = "xxxxxxxxxxxx"
-  account_id = "xxxxxxxxxxxx"
+  token      = var.token
+  account_id = var.account_id
 }
+
+variable "region" {
+  description = "AWS Region"
+  type        = string
+  default     = "us-west-2"
+}
+
+variable "baseurl" {}
+variable "token" {}
+variable "account_id" {}
+
 
 // Virtual Socket Resource
 module "vsocket-aws" {
   source = "catonetworks/vsocket-aws/cato"
+  region               = var.region
   vpc_id               = "vpc-abcde12345abcde"
   key_pair             = "your-keypair-name-here"
-  native_network_range = "10.0.0.0/16"
+  subnet_range_lan     = "10.0.3.0/24"
   mgmt_eni_id          = "eni-abcde12345abcde12mgmt"
   wan_eni_id           = "eni-abcde12345abcde123wan"
   lan_eni_id           = "eni-abcde12345abcde123lan"
   lan_local_ip         = "10.0.3.5"
   site_name            = "AWS Site us-east-2"
   site_description     = "AWS Site us-east-2"
-  site_location = {
-    city         = "New York City"
-    country_code = "US"
-    state_code   = "US-NY" ## Optional - for countries with states"
-    timezone     = "America/New_York"
-  }
+  # site location is inferred from aws region 
+  
+  # Example Networks to be routed through to AWS
+  routed_networks = {
+    "Peered-VPC-1" = "10.100.1.0/24"
+    "App-VPC" = "10.100.3.0/24"
+    "DatabaseVPC" = "10.100.2.0/24"
+    }
+  
+  # Example Tags
   tags = {
     Environment = "Production"
     Owner = "Operations Team"
