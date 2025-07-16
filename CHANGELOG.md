@@ -49,3 +49,9 @@
 - Updated Readme File 
 - Updated Versions to latest cato provider, aws_provider 
 - Removed native_network for site configuration, inferred from lan_subnet via a for_each
+
+## 0.0.18 (2025-07-16)
+
+### Features
+ - Update Site_Location from Region
+ - Version Lock Cato Provider 0.0.30 or greater
