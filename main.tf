@@ -17,7 +17,7 @@ resource "cato_network_range" "routedNetworks" {
   site_id         = cato_socket_site.aws-site.id
   name            = each.key # The name is the key from the map item.
   range_type      = "Routed"
-  subnet          = each.value # The subnet is the value from the map item.
+  subnet          = each.value.subnet # The subnet is the value from the map item.
   interface_index = each.value.interface_index
   gateway         = local.default_subnet_gateway
   depends_on      = [aws_instance.vSocket]
