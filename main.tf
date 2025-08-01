@@ -13,13 +13,14 @@ resource "cato_socket_site" "aws-site" {
 
 
 resource "cato_network_range" "routedNetworks" {
-  for_each   = var.routed_networks
-  site_id    = cato_socket_site.aws-site.id
-  name       = each.key # The name is the key from the map item.
-  range_type = "Routed"
-  subnet     = each.value # The subnet is the value from the map item.
-  gateway    = local.default_subnet_gateway
-  depends_on = [aws_instance.vSocket]
+  for_each        = var.routed_networks
+  site_id         = cato_socket_site.aws-site.id
+  name            = each.key # The name is the key from the map item.
+  range_type      = "Routed"
+  subnet          = each.value # The subnet is the value from the map item.
+  interface_index = each.value.interface_index
+  gateway         = local.default_subnet_gateway
+  depends_on      = [aws_instance.vSocket]
 }
 
 
