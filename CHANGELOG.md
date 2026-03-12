@@ -60,5 +60,10 @@
 
 ### Features
  - Updated to use latest provider version 
-  - Adjusted routed_networks call to include interface_index 
+ - Adjusted routed_networks call to include interface_index 
  - Version Lock to Provider version 0.0.38 or greater
+
+ ## 0.0.20 (2026-03-12)
+
+### Features
+ - Updated disk to be encrypted and updated network interfaces to use new convention of primary and aws_network_interface_attachment
