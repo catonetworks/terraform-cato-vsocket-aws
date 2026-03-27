@@ -31,9 +31,9 @@ resource "aws_instance" "vSocket" {
   user_data_base64 = base64encode(data.cato_accountSnapshotSite.aws-site.info.sockets[0].serial)
 
   # Network Interfaces
-  # WANENI
+  # MGMTENI
   primary_network_interface {
-    network_interface_id = var.wan_eni_id
+    network_interface_id = var.mgmt_eni_id
   }
   ebs_block_device {
     device_name = "/dev/sda1"
@@ -46,10 +46,10 @@ resource "aws_instance" "vSocket" {
   })
 }
 
-# MGMTENI
-resource "aws_network_interface_attachment" "mgmt-int" {
+# WANENI
+resource "aws_network_interface_attachment" "wan-int" {
   instance_id          = aws_instance.vSocket.id
-  network_interface_id = var.mgmt_eni_id
+  network_interface_id = var.wan_eni_id
   device_index         = 1
 }
 

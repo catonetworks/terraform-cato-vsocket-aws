@@ -63,7 +63,12 @@
  - Adjusted routed_networks call to include interface_index 
  - Version Lock to Provider version 0.0.38 or greater
 
- ## 0.0.21 (2026-03-12)
+## 0.0.21 (2026-03-12)
 
 ### Features
  - Updated disk to be encrypted and updated network interfaces to use new convention of primary and aws_network_interface_attachment
+
+## 0.0.22 (2026-03-27)
+
+### Features
+ - Updated order of NICs to properlly map mgmt as primary NIC
