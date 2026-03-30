@@ -72,3 +72,8 @@
 
 ### Features
  - Updated order of NICs to properlly map mgmt as primary NIC
+
+## 0.0.23 (2026-03-30)
+
+### Features
+- Update module adding lifecycle.ignore_changes for ami on socket instance

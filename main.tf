@@ -44,6 +44,10 @@ resource "aws_instance" "vSocket" {
   tags = merge(var.tags, {
     Name = "${var.site_name}-vSocket"
   })
+ 
+  lifecycle {
+    ignore_changes = [ami]
+  }
 }
 
 # WANENI
