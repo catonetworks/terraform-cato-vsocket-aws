@@ -73,8 +73,8 @@ For more information on site_location syntax, use the [Cato CLI](https://github.
 
 ```bash
 $ pip3 install catocli
-$ export CATO_TOKEN="your-api-token-here"
-$ export CATO_ACCOUNT_ID="your-account-id"
+$ export TF_VAR_CATO_TOKEN="your-api-token-here"
+$ export TF_VAR_CATO_ACCOUNT_ID="your-account-id"
 $ catocli query siteLocation -h
 $ catocli query siteLocation '{"filters":[{"search": "San Diego","field":"city","operation":"exact"}]}' -p
 ```
@@ -92,17 +92,18 @@ Apache 2 Licensed. See [LICENSE](https://github.com/catonetworks/terraform-cato-
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.98.00 |
-| <a name="requirement_cato"></a> [cato](#requirement\_cato) | >= 0.0.38 |
+| <a name="requirement_cato"></a> [cato](#requirement\_cato) | >= 0.0.70 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.98.00 |
-| <a name="provider_cato"></a> [cato](#provider\_cato) | >= 0.0.38 |
+| <a name="provider_cato"></a> [cato](#provider\_cato) | >= 0.0.70 |
+| <a name="provider_null"></a> [null](#provider\_null) | n/a |
 
 ## Modules
 
@@ -111,11 +112,14 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_instance.vSocket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | resource |
+| [aws_network_interface_attachment.lan-int](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_interface_attachment) | resource |
+| [aws_network_interface_attachment.wan-int](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_interface_attachment) | resource |
 | [cato_license.license](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/resources/license) | resource |
 | [cato_network_range.routedNetworks](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/resources/network_range) | resource |
 | [cato_socket_site.aws-site](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/resources/socket_site) | resource |
+| [null_resource.reboot_once](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [aws_ami.vSocket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
 | [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
 | [cato_accountSnapshotSite.aws-site](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/data-sources/accountSnapshotSite) | data source |
@@ -124,7 +128,7 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_connection_type"></a> [connection\_type](#input\_connection\_type) | Model of Cato vsocket | `string` | `"SOCKET_AWS1500"` | no |
 | <a name="input_ebs_disk_size"></a> [ebs\_disk\_size](#input\_ebs\_disk\_size) | Size of disk | `number` | `32` | no |
 | <a name="input_ebs_disk_type"></a> [ebs\_disk\_type](#input\_ebs\_disk\_type) | Size of disk | `string` | `"gp3"` | no |
@@ -149,7 +153,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_cato_license"></a> [cato\_license](#output\_cato\_license) | Cato site license info |
 | <a name="output_cato_site_name"></a> [cato\_site\_name](#output\_cato\_site\_name) | The Site Name of the Cato Networks Site (CMA) |
 | <a name="output_local_ip"></a> [local\_ip](#output\_local\_ip) | The local IP of the Cato vSocket |
