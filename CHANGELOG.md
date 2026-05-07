@@ -77,3 +77,14 @@
 
 ### Features
 - Update module adding lifecycle.ignore_changes for ami on socket instance
+
+## 0.0.24 (2026-05-07)
+
+### Fixes
+- Replaced dynamic Cato siteLocation API data source lookup with a hardcoded AWS region-to-site-location mapping
+- Mapping covers all major AWS regions across North America, Canada, Mexico, Europe, Asia Pacific, Middle East, Africa, South America, and China
+- Eliminates provider API dependency during plan/apply for site location resolution, improving reliability
+- User-provided site_location values still take precedence over the hardcoded defaults
+
+### Features
+- Update cato provider to version 0.0.73
